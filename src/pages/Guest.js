@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { AUTH_TYPES } from '../store/auth/auth.reducer'
+import { AuthCreators } from '../store/auth/auth.actions'
 import { selectAuthLoading, selectAuthError } from '../store/auth/auth.selector'
 
 const Guest = () => {
@@ -16,11 +16,10 @@ const Guest = () => {
 
   const handleLogin = useCallback(
     () => {
-      dispatch({
-        type: AUTH_TYPES.LOGIN,
-        username: usernameRef.current.value,
-        password: passwordRef.current.value
-      })
+      dispatch(AuthCreators.login(
+        usernameRef.current.value,
+        passwordRef.current.value
+      ))
     },
     [dispatch]
   )

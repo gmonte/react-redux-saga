@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
 import { selectUserName } from '../store/user/user.selector'
-import { USER_TYPES } from '../store/user/user.reducer'
+import { UserTypes } from '../store/user/user.actions'
 
 const UserCard = () => {
   const dispatch = useDispatch()
@@ -12,7 +12,7 @@ const UserCard = () => {
   const handleChangeName = useCallback(
     () => {
       dispatch({
-        type: USER_TYPES.CHANGE_USER_NAME,
+        type: UserTypes.CHANGE_USER_NAME,
         name: 'mateus'
       })
     },

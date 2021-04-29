@@ -1,6 +1,6 @@
 import { takeLatest, delay, put } from 'redux-saga/effects'
 
-import { AUTH_TYPES } from './auth.reducer'
+import { AuthTypes } from './auth.actions'
 
 function* login({ username, password }) {
   try {
@@ -13,19 +13,19 @@ function* login({ username, password }) {
     }
     
     yield put({
-      type: AUTH_TYPES.LOGIN_SUCCESS,
+      type: AuthTypes.LOGIN_SUCCESS,
       token: 'reduxémtolegal'
     })
   } catch (e) {
     yield put({
-      type: AUTH_TYPES.LOGIN_ERROR,
+      type: AuthTypes.LOGIN_ERROR,
       error: e.toString()
     })
   }
 }
 
 const sagas = [
-  takeLatest(AUTH_TYPES.LOGIN, login)
+  takeLatest(AuthTypes.LOGIN, login)
 ]
 
 export default sagas

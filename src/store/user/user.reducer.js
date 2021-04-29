@@ -1,30 +1,21 @@
-import { AUTH_TYPES } from '../auth/auth.reducer'
+import { createReducer } from 'reduxsauce'
+import { AuthTypes } from '../auth/auth.actions'
+import { UserTypes } from './user.actions'
 
 const INITIAL_STATE = {
-  name: 'Pedro',
+  name: '',
   age: null
 }
 
-export const USER_TYPES = {
-  CHANGE_USER_NAME: 'CHANGE_USER_NAME'
-}
-
-const changeUserName = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    name: action.name
-  }
-}
+const changeUserName = (state = INITIAL_STATE, { name }) => ({
+  ...state,
+  name
+})
 
 const logout = () => ({ ...INITIAL_STATE })
 
-const userReducer = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
-    case USER_TYPES.CHANGE_USER_NAME: return changeUserName(state, action)
-    case AUTH_TYPES.LOGOUT: return logout(state, action)
+export default createReducer(INITIAL_STATE, {
+  [UserTypes.CHANGE_USER_NAME]: changeUserName,
 
-    default: return state
-  }
-}
-
-export default userReducer
+  [AuthTypes.LOGOUT]: logout
+})

@@ -5,13 +5,13 @@ import { useDispatch } from 'react-redux'
 import UserCard from '../containers/UserCard'
 import Book from '../containers/Book'
 
-import { AUTH_TYPES } from '../store/auth/auth.reducer'
+import { AuthTypes } from '../store/auth/auth.actions'
 
 const Authenticated = () => {
   const dispatch = useDispatch()
 
   const handleLogout = useCallback(
-    () => dispatch({ type: AUTH_TYPES.LOGOUT }),
+    () => dispatch({ type: AuthTypes.LOGOUT }),
     [dispatch]
   )
 
